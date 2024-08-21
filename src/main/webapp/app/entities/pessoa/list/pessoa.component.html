@@ -47,7 +47,7 @@
           </td>
           <td>{{ pessoa.nome }}</td>
           <td>{{ pessoa.dataNascimento | formatMediumDate }}</td>
-          <td>{{ pessoa.cpf }}</td>
+          <td>{{ pessoa.cpf ? (formatCpf(pessoa.cpf) | mask: '000.000.000-00') : '' }}</td>
           <td>{{ pessoa.estadoCivil }}</td>
           <td class="text-right">
             <div class="btn-group">

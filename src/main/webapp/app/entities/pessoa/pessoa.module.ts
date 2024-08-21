@@ -5,9 +5,10 @@ import { PessoaDetailComponent } from './detail/pessoa-detail.component';
 import { PessoaUpdateComponent } from './update/pessoa-update.component';
 import { PessoaDeleteDialogComponent } from './delete/pessoa-delete-dialog.component';
 import { PessoaRoutingModule } from './route/pessoa-routing.module';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
-  imports: [SharedModule, PessoaRoutingModule],
+  imports: [SharedModule, PessoaRoutingModule, NgxMaskModule.forRoot()],
   declarations: [PessoaComponent, PessoaDetailComponent, PessoaUpdateComponent, PessoaDeleteDialogComponent],
   entryComponents: [PessoaDeleteDialogComponent],
 })

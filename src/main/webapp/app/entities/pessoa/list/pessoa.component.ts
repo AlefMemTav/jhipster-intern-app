@@ -97,6 +97,10 @@ export class PessoaComponent implements OnInit {
     });
   }
 
+  formatCpf(cpf: string | number): string {
+    return cpf ? cpf.toString().replace(/\D/g, '') : '';
+  }
+
   protected sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? ASC : DESC)];
     if (this.predicate !== 'id') {
