@@ -396,7 +396,7 @@ public class Pessoa implements Serializable {
     }
 
     public Pessoa dataExclusao(LocalDate dataExclusao) {
-        this.setRaca(raca);
+        this.setDataExclusao(dataExclusao);
         return this;
     }
 
