@@ -7,11 +7,22 @@ import br.com.elfotec.domain.enumeration.TipoSanguineo;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.Where;
 
 /**
  * Pessoas podem ser PJ ou PF\nApenas PF podem ser Atendidas\nMas um cadastro unificado incluindo PJ servirá para o módulo financeiro\nInclusive os profissionais são PF neste cadastro
@@ -19,6 +30,8 @@ import org.hibernate.annotations.Type;
 @Entity
 @Table(name = "pessoa")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@SQLDelete(sql = "UPDATE pessoa SET data_exclusao = CURRENT_DATE WHERE id = ?")
+@Where(clause = "data_exclusao IS NULL")
 public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -112,6 +125,9 @@ public class Pessoa implements Serializable {
 
     @Column(name = "raca")
     private String raca;
+
+    @Column(name = "data_exclusao", nullable = true)
+    private LocalDate dataExclusao;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -375,6 +391,19 @@ public class Pessoa implements Serializable {
         this.raca = raca;
     }
 
+    public LocalDate getDataExclusao() {
+        return this.dataExclusao;
+    }
+
+    public Pessoa dataExclusao(LocalDate dataExclusao) {
+        this.setRaca(raca);
+        return this;
+    }
+
+    public void setDataExclusao(LocalDate dataExclusao) {
+        this.dataExclusao = dataExclusao;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -418,6 +447,7 @@ public class Pessoa implements Serializable {
             ", observacoes='" + getObservacoes() + "'" +
             ", naturalidade='" + getNaturalidade() + "'" +
             ", raca='" + getRaca() + "'" +
+            ", dataExclusao='" + getDataExclusao() + "'" +
             "}";
     }
 }
