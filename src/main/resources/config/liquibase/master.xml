@@ -23,6 +23,7 @@
     <include file="config/liquibase/changelog/20230727233434_added_entity_constraints_MediaFile.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230727233436_added_entity_constraints_PessoaContato.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230727233437_added_entity_constraints_PessoaRedeSocial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240821235800_added_fied_telefone_ddi_PessoaContato.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

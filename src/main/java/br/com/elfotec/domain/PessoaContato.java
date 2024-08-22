@@ -2,8 +2,15 @@ package br.com.elfotec.domain;
 
 import java.io.Serializable;
 import java.time.Instant;
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -50,6 +57,12 @@ public class PessoaContato implements Serializable {
      */
     @Column(name = "telefone_numero_completo")
     private String telefoneNumeroCompleto;
+
+    /**
+     * Caso o contato seja um número de telefone
+     */
+    @Column(name = "telefone_ddi")
+    private Integer telefoneDdi;
 
     /**
      * Caso o contato seja um número de telefone
@@ -175,6 +188,19 @@ public class PessoaContato implements Serializable {
         this.telefoneNumeroCompleto = telefoneNumeroCompleto;
     }
 
+    public Integer getTelefoneDdi() {
+        return this.telefoneDdi;
+    }
+
+    public PessoaContato telefoneDdi(Integer telefoneDdi) {
+        this.setTelefoneDdi(telefoneDdi);
+        return this;
+    }
+
+    public void setTelefoneDdi(Integer telefoneDdi) {
+        this.telefoneDdi = telefoneDdi;
+    }
+
     public Integer getTelefoneDdd() {
         return this.telefoneDdd;
     }
@@ -296,6 +322,7 @@ public class PessoaContato implements Serializable {
             ", descricao='" + getDescricao() + "'" +
             ", contatoDigitalIdent='" + getContatoDigitalIdent() + "'" +
             ", telefoneNumeroCompleto='" + getTelefoneNumeroCompleto() + "'" +
+            ", telefoneDdi=" + getTelefoneDdi() +
             ", telefoneDdd=" + getTelefoneDdd() +
             ", telefoneNumero=" + getTelefoneNumero() +
             ", preferido='" + getPreferido() + "'" +

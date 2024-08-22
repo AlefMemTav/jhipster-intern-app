@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * A DTO for the {@link br.com.elfotec.domain.PessoaContato} entity.
@@ -37,6 +37,12 @@ public class PessoaContatoDTO implements Serializable {
      */
     @Schema(description = "pode ter o simbolo 'plus', ddi, ddd alem do numero")
     private String telefoneNumeroCompleto;
+
+    /**
+     * Caso o contato seja um número de telefone
+     */
+    @Schema(description = "Caso o contato seja um número de telefone")
+    private Integer telefoneDdi;
 
     /**
      * Caso o contato seja um número de telefone
@@ -118,6 +124,14 @@ public class PessoaContatoDTO implements Serializable {
 
     public void setTelefoneNumeroCompleto(String telefoneNumeroCompleto) {
         this.telefoneNumeroCompleto = telefoneNumeroCompleto;
+    }
+
+    public Integer getTelefoneDdi() {
+        return telefoneDdi;
+    }
+
+    public void setTelefoneDdi(Integer telefoneDdi) {
+        this.telefoneDdi = telefoneDdi;
     }
 
     public Integer getTelefoneDdd() {
@@ -208,6 +222,7 @@ public class PessoaContatoDTO implements Serializable {
             ", descricao='" + getDescricao() + "'" +
             ", contatoDigitalIdent='" + getContatoDigitalIdent() + "'" +
             ", telefoneNumeroCompleto='" + getTelefoneNumeroCompleto() + "'" +
+            ", telefoneDdi=" + getTelefoneDdi() +
             ", telefoneDdd=" + getTelefoneDdd() +
             ", telefoneNumero=" + getTelefoneNumero() +
             ", preferido='" + getPreferido() + "'" +
