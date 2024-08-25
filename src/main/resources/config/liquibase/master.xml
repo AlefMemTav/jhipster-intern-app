@@ -25,6 +25,7 @@
     <include file="config/liquibase/changelog/20230727233437_added_entity_constraints_PessoaRedeSocial.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240821235800_added_fied_telefone_ddi_PessoaContato.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240822125929_added_field_data_exclusao_Pessoa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240824212301_added_field_pais_Pessoa.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

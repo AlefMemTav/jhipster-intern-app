@@ -90,6 +90,12 @@
         <dd>
           <span>{{ pessoa.raca }}</span>
         </dd>
+        <dt><span>País</span></dt>
+        <dd>
+          <ng-container *ngFor="let country of countries">
+            <span *ngIf="country.cca2 == pessoa.pais">{{ country.translations.por.common }}</span>
+          </ng-container>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

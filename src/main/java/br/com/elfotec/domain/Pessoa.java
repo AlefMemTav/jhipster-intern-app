@@ -129,6 +129,12 @@ public class Pessoa implements Serializable {
     @Column(name = "data_exclusao", nullable = true)
     private LocalDate dataExclusao;
 
+    /**
+     * Representa o código cca2 do País de acordo com a ISO 3166-1 alpha-2.
+     */
+    @Column(name = "pais", length = 2)
+    private String pais;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -404,6 +410,19 @@ public class Pessoa implements Serializable {
         this.dataExclusao = dataExclusao;
     }
 
+    public String getPais() {
+        return this.pais;
+    }
+
+    public Pessoa pais(String pais) {
+        this.setPais(pais);
+        return this;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -448,6 +467,7 @@ public class Pessoa implements Serializable {
             ", naturalidade='" + getNaturalidade() + "'" +
             ", raca='" + getRaca() + "'" +
             ", dataExclusao='" + getDataExclusao() + "'" +
+            ", pais='" + getPais() + "'" +
             "}";
     }
 }

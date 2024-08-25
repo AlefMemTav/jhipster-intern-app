@@ -17,6 +17,8 @@ import { TipoSanguineo } from 'app/entities/enumerations/tipo-sanguineo.model';
 import { Sexo } from 'app/entities/enumerations/sexo.model';
 import { TipoPessoa } from 'app/entities/enumerations/tipo-pessoa.model';
 import { EstadoCivil } from 'app/entities/enumerations/estado-civil.model';
+import { CountryService } from 'app/entities/country/service/country.service';
+import { Country } from 'app/entities/country/model/country';
 
 @Component({
   selector: 'jhi-pessoa-update',
@@ -28,6 +30,7 @@ export class PessoaUpdateComponent implements OnInit {
   sexoValues = Object.keys(Sexo);
   tipoPessoaValues = Object.keys(TipoPessoa);
   estadoCivilValues = Object.keys(EstadoCivil);
+  countries: Country[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -50,12 +53,14 @@ export class PessoaUpdateComponent implements OnInit {
     observacoes: [],
     naturalidade: [],
     raca: [],
+    pais: [],
   });
 
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
     protected pessoaService: PessoaService,
+    protected countryService: CountryService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -69,6 +74,8 @@ export class PessoaUpdateComponent implements OnInit {
 
       this.updateForm(pessoa);
     });
+
+    this.countryService.listAll().subscribe(contries => (this.countries = contries));
   }
 
   byteSize(base64String: string): string {
@@ -141,6 +148,7 @@ export class PessoaUpdateComponent implements OnInit {
       observacoes: pessoa.observacoes,
       naturalidade: pessoa.naturalidade,
       raca: pessoa.raca,
+      pais: pessoa.pais,
     });
   }
 
@@ -169,6 +177,7 @@ export class PessoaUpdateComponent implements OnInit {
       observacoes: this.editForm.get(['observacoes'])!.value,
       naturalidade: this.editForm.get(['naturalidade'])!.value,
       raca: this.editForm.get(['raca'])!.value,
+      pais: this.editForm.get(['pais'])!.value,
     };
   }
 }

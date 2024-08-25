@@ -9,6 +9,8 @@ import { PessoaService } from '../service/pessoa.service';
 import { PessoaDeleteDialogComponent } from '../delete/pessoa-delete-dialog.component';
 import { DataUtils } from 'app/core/util/data-util.service';
 import { ParseLinks } from 'app/core/util/parse-links.service';
+import { CountryService } from 'app/entities/country/service/country.service';
+import { Country } from 'app/entities/country/model/country';
 
 @Component({
   selector: 'jhi-pessoa',
@@ -22,12 +24,14 @@ export class PessoaComponent implements OnInit {
   page: number;
   predicate: string;
   ascending: boolean;
+  countries: Country[] = [];
 
   constructor(
     protected pessoaService: PessoaService,
     protected dataUtils: DataUtils,
     protected modalService: NgbModal,
-    protected parseLinks: ParseLinks
+    protected parseLinks: ParseLinks,
+    protected countryService: CountryService
   ) {
     this.pessoas = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
@@ -72,6 +76,7 @@ export class PessoaComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAll();
+    this.countryService.listAll().subscribe(contries => (this.countries = contries));
   }
 
   trackId(index: number, item: IPessoa): number {

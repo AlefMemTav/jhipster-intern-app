@@ -220,6 +220,13 @@
           <label class="form-control-label" for="field_raca">Raca</label>
           <input type="text" class="form-control" name="raca" id="field_raca" data-cy="raca" formControlName="raca" />
         </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_countries">Países</label>
+          <select class="form-control" formControlName="pais">
+            <option *ngFor="let country of countries" [value]="country.cca2">{{ country.translations.por.common }}</option>
+          </select>
+        </div>
       </div>
 
       <div>

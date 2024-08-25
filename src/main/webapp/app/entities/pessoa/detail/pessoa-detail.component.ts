@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { IPessoa } from '../pessoa.model';
 import { DataUtils } from 'app/core/util/data-util.service';
+import { CountryService } from 'app/entities/country/service/country.service';
+import { Country } from 'app/entities/country/model/country';
 
 @Component({
   selector: 'jhi-pessoa-detail',
@@ -10,13 +12,16 @@ import { DataUtils } from 'app/core/util/data-util.service';
 })
 export class PessoaDetailComponent implements OnInit {
   pessoa: IPessoa | null = null;
+  countries: Country[] = [];
 
-  constructor(protected dataUtils: DataUtils, protected activatedRoute: ActivatedRoute) {}
+  constructor(protected dataUtils: DataUtils, protected activatedRoute: ActivatedRoute, protected countryService: CountryService) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ pessoa }) => {
       this.pessoa = pessoa;
     });
+
+    this.countryService.listAll().subscribe(contries => (this.countries = contries));
   }
 
   byteSize(base64String: string): string {

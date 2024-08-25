@@ -10,7 +10,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Lob;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * A DTO for the {@link br.com.elfotec.domain.Pessoa} entity.
@@ -87,6 +87,8 @@ public class PessoaDTO implements Serializable {
     private String naturalidade;
 
     private String raca;
+
+    private String pais;
 
     public Long getId() {
         return id;
@@ -248,6 +250,14 @@ public class PessoaDTO implements Serializable {
         this.raca = raca;
     }
 
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -293,6 +303,7 @@ public class PessoaDTO implements Serializable {
             ", observacoes='" + getObservacoes() + "'" +
             ", naturalidade='" + getNaturalidade() + "'" +
             ", raca='" + getRaca() + "'" +
+            ", pais='" + getPais() + "'" +
             "}";
     }
 }
